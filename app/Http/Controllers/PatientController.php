@@ -14,15 +14,26 @@ class PatientController extends AppBaseController
 {
     use ConsumesExternalService;
 
-    protected $baseUri;
+
     
     public function __construct(private PatientRepository $patientRepository)
     {
-        $this->patientRepository = $patientRepository;
+       
     }
-    public function create(PatientRequest $request)
+
+    public function index()
     {
-        // $this->authorize('create', Patient::class);
+       
+        $patients = $this->patientRepository->getAll();
+
+        return $this->sendResponse(
+            ["patients" => $patients],
+            __('messages.retrieved', ['model' => __('models/patients.plural')])
+        );
+    }
+
+     public function store(PatientRequest $request)
+    {
     $input = $request->all();
    
     $user = $this->patientRepository->create($input);
@@ -33,10 +44,55 @@ class PatientController extends AppBaseController
     );
    
     }
+    // public function store(StorepatientRequest $request)
+    // {
+    //     $input = $request->all();
+    //     $authUser = $request->get('auth_user');
+    //         // dd($authU     ser);
+    //     $input['user_id'] = $authUser['id'];
+    //     $input['photo'] = $request->file('photo'); 
+    //     $exam = $this->patientRepository->create($input);
 
+    //     return $this->sendResponse(
+    //         $exam->toArray(),
+    //         __('messages.saved', ['model' => __('models/exams.singular')])
+    //     );
+    // }
 
-    public function show(PatientRequest $request)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Patient $patient)
     {
-        dd('hgdhs');
+          return $this->sendResponse(
+            ["patient" => $patient],
+            __('messages.retrieved', ['model' => __('models/patient.singular')])
+        );
     }
+
+    public function update(UpdatepatientRequest $request, Patient $patient)
+    {
+        $input = $request->validated();
+        $input['photo'] = $request->file('photo'); 
+        $patient = $this->patientRepository->update($input, $patient->id);
+
+        return $this->sendResponse(
+            ["patient" => $patient->fresh()],
+            __('messages.updated', ['model' => __('models/patient.singular')])
+        );
+    }
+    
+    public function destroy(Patient $patient)
+    {
+        $this->patientRepository->delete($patient->id);
+
+        return $this->sendResponse(
+            [],
+            __('messages.deleted', ['model' => __('models/patient.singular')])
+        );
+    }
+   
+
+
+   
 }
