@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Observers\PatientObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy([PatientObserver::class])]
 class Patient extends Model
 {
     public $table = 'patients';
@@ -12,6 +15,7 @@ class Patient extends Model
     use HasFactory;
 
     protected $fillable = [
+        'slug',
         'first_name',
         'last_name',
         'phone',
@@ -23,6 +27,8 @@ class Patient extends Model
     ];
 
     protected $casts = [
+        'id' => 'integer',
+        'slug' => 'string',
         'age' => 'integer',
         'first_name' => 'string',
         'last_name' => 'string',

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientRequest;
+use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
 use App\Repositories\PatientRepository;
 use App\Traits\ConsumesExternalService;
@@ -32,17 +34,17 @@ class PatientController extends AppBaseController
         );
     }
 
-     public function store(PatientRequest $request)
+     public function store(StorePatientRequest $request)
     {
-    $input = $request->all();
-   
-    $user = $this->patientRepository->create($input);
-     
-    return $this->sendResponse(
-        ["user" => $user->fresh()],
-        __('messages.saved', ['model' => __('models/users.singular')])
-    );
-   
+        $input = $request->all();
+    
+        $user = $this->patientRepository->create($input);
+        
+        return $this->sendResponse(
+            ["user" => $user->fresh()],
+            __('messages.saved', ['model' => __('models/users.singular')])
+        );
+    
     }
     // public function store(StorepatientRequest $request)
     // {
@@ -70,10 +72,9 @@ class PatientController extends AppBaseController
         );
     }
 
-    public function update(UpdatepatientRequest $request, Patient $patient)
+    public function update(UpdatePatientRequest $request, Patient $patient)
     {
         $input = $request->validated();
-        $input['photo'] = $request->file('photo'); 
         $patient = $this->patientRepository->update($input, $patient->id);
 
         return $this->sendResponse(

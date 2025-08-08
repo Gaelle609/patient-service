@@ -1,0 +1,41 @@
+php artisan make:listener ArticleCreatedListener
+php artisan make:listener ArticleUpdatedListener
+php artisan make:listener ArticleDeletedListener
+php artisan make:listener CategoryCreatedListener
+php artisan make:listener CategoryUpdatedListener
+php artisan make:listener CategoryDeletedListener
+php artisan make:listener FavoriteCreatedListener
+php artisan make:listener FavotiteUpdatedListener
+php artisan make:listener FavoriteDeletedListener
+php artisan make:listener ReviewCreatedListener
+php artisan make:listener ReviewUpdatedListener
+php artisan make:listener ReviewDeletedListener
+php artisan make:listener CommentCreatedListener
+php artisan make:listener CommentUpdatedListener
+php artisan make:listener CommentDeletedListener
+
+php artisan make:request StorePatientRequest
+php artisan make:request UpdatePatientRequest
+php artisan make:observer PatientObserver --model=Patient
+php artisan make:listener PatientCreatedListener
+php artisan make:listener PatientUpdatedListener
+php artisan make:listener PatientDeletedListener
+php artisan make:event PatientCreatedEvent
+php artisan make:event PatientUpdatedEvent
+php artisan make:event PatientDeletedEvent
+php artisan make:factory PatientFactory
+
+
+php artisan make:observer ArticleObserver --model=Article
+php artisan make:observer CategoryObserver --model=Category
+php artisan make:observer FavoriteObserver --model=Favorite
+php artisan make:observer ReviewObserver --model=Review
+php artisan make:observer ViewObserver --model=View
+php artisan make:observer CommentObserver --model=Comment
+
+
+
+php artisan make:policy CommentPolicy --model=Comment
+php artisan make:policy FavoritePolicy --model=Favorite
+php artisan make:policy ReviewPolicy --model=Review
+php artisan make:policy viewPolicy --model=view
