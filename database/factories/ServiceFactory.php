@@ -16,8 +16,12 @@ class ServiceFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->unique()->words(2, true);
+
         return [
-            //
+            'name' => ucfirst($name),
+            'description' => $this->faker->sentence(),
+            'price' => $this->faker->randomFloat(2, 1000, 100000), // prix entre 1000 et 100000
         ];
     }
 }

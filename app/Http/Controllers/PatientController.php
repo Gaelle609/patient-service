@@ -38,11 +38,11 @@ class PatientController extends AppBaseController
     {
         $input = $request->validated();
     
-        $user = $this->patientRepository->create($input);
+        $paient = $this->patientRepository->create($input);
         
         return $this->sendResponse(
-            ["user" => $user],
-            __('messages.saved', ['model' => __('models/users.singular')])
+            ["patien" => $paient],
+            __('messages.saved', ['model' => __('models/patient.singular')])
         );
     
     }

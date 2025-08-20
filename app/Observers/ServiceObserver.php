@@ -6,12 +6,14 @@ use App\Models\Service;
 
 class ServiceObserver
 {
-    /**
-     * Handle the Service "created" event.
-     */
+    public function creating(Service $service)
+    {
+        $service->slug = makeSlug($service);
+    }
+
     public function created(Service $service): void
     {
-        //
+        \App\Events\ServiceCreatedEvent::dispatch($service);
     }
 
     /**
@@ -19,15 +21,14 @@ class ServiceObserver
      */
     public function updated(Service $service): void
     {
-        //
+        \App\Events\ServiceUpdatedEvent::dispatch($service);
     }
-
     /**
      * Handle the Service "deleted" event.
      */
     public function deleted(Service $service): void
     {
-        //
+        \App\Events\ServiceDeletedEvent::dispatch($service);
     }
 
     /**
