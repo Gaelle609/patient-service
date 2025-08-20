@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Patient;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePatientRequest extends FormRequest
@@ -11,7 +12,7 @@ class StorePatientRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,8 @@ class StorePatientRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+       $rules = Patient::$rules;
+
+        return $rules;
     }
 }

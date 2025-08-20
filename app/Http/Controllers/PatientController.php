@@ -36,34 +36,17 @@ class PatientController extends AppBaseController
 
      public function store(StorePatientRequest $request)
     {
-        $input = $request->all();
+        $input = $request->validated();
     
         $user = $this->patientRepository->create($input);
         
         return $this->sendResponse(
-            ["user" => $user->fresh()],
+            ["user" => $user],
             __('messages.saved', ['model' => __('models/users.singular')])
         );
     
     }
-    // public function store(StorepatientRequest $request)
-    // {
-    //     $input = $request->all();
-    //     $authUser = $request->get('auth_user');
-    //         // dd($authU     ser);
-    //     $input['user_id'] = $authUser['id'];
-    //     $input['photo'] = $request->file('photo'); 
-    //     $exam = $this->patientRepository->create($input);
-
-    //     return $this->sendResponse(
-    //         $exam->toArray(),
-    //         __('messages.saved', ['model' => __('models/exams.singular')])
-    //     );
-    // }
-
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(Patient $patient)
     {
           return $this->sendResponse(
@@ -78,7 +61,7 @@ class PatientController extends AppBaseController
         $patient = $this->patientRepository->update($input, $patient->id);
 
         return $this->sendResponse(
-            ["patient" => $patient->fresh()],
+            ["patient" => $patient],
             __('messages.updated', ['model' => __('models/patient.singular')])
         );
     }

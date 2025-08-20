@@ -26,24 +26,6 @@ class PatientRepository extends BaseRepository
         return Patient::class;
     }
 
-//     public function createPatient($data, $token)
-// {
-    
-//         // Vérifier l'authentification auprès du service
-//         $response = $this->performRequest('GET', '/api/users', [], [
-//             'Authorization' => "Bearer $token"
-//         ]);
 
-//         // Vérifier si l'authentification a échoué
-//         if (!is_array($response) || isset($response['error'])) {
-//             return [
-//                 'error' => true,
-//                 'message' => 'Utilisateur non authentifié'
-//             ];
-//         }
-
-//         // Créer le patient et retourner ses données
-//         return Patient::create($data);
-// }
 
 }

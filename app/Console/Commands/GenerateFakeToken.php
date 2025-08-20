@@ -30,7 +30,7 @@ class GenerateFakeToken extends Command
             'id' => 1,
             'email' => 'gaelle@example.com',
             'name' => 'gaelle',
-            'permissions' => ['create_exam', 'update_exam'],
+            'permissions' => ['create-patient', 'update-patient', 'delete-patient'],
         ];
 
         $jwt = JWT::encode($payload, env('JWT_SECRET'), 'HS256');
