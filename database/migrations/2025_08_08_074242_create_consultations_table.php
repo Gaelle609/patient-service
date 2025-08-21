@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained('patient');
-            $table->unsignedBigInteger('personnel_id')->nullable();
-            $table->unsignedBigInteger('medecin_id')->nullable();
+            $table->unsignedBigInteger('id_per')->nullable();
             $table->decimal('temperature')->nullable();
             $table->integer('poids')->nullable();
             $table->integer('tension')->nullable();

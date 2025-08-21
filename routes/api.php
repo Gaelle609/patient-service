@@ -12,6 +12,9 @@ Route::middleware(['decode.jwt'])->group(function () {
 
     // Service
     Route::apiResource('services', ServiceController::class);
+
+    // Transfer
+    Route::apiResource('transfers', \App\Http\Controllers\TransferController::class);
    
 });
 

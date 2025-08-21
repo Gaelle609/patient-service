@@ -11,7 +11,7 @@ class UpdateTransferRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateTransferRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id_per_sender' => 'sometimes|integer',
+            'id_per_receiver' => 'sometimes|integer',
+            'date_envoi' => 'sometimes|date',
+            'date_recu' => 'sometimes|date',
+            'patient_id' => 'sometimes|string|max:255',
+            'etat_transfere' => 'sometimes|string|in:non_recu,recu', 
+            'id_per_recu' => 'sometimes|integer',
         ];
     }
 }

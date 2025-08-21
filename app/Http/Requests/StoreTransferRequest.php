@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transfer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTransferRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreTransferRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,8 @@ class StoreTransferRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+         $rules = Transfer::$rules;
+
+        return $rules;
     }
 }
