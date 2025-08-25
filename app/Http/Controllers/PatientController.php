@@ -14,10 +14,6 @@ use GuzzleHttp\Exception\RequestException;
 
 class PatientController extends AppBaseController
 {
-    use ConsumesExternalService;
-
-
-    
     public function __construct(private PatientRepository $patientRepository)
     {
        
